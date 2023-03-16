@@ -8,7 +8,7 @@ import numpy as np
 from power_form import PowerForm
 
 # Importar los ficheros serializados
-regression_loaded = joblib.load("./src/model/knn_model.pkl")
+regression_loaded = joblib.load("./src/model/lgbm_model.pkl")
 
 # Creamos la función de prediccion
 def make_prediction(model, sample_json):
