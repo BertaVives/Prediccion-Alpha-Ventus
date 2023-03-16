@@ -11,12 +11,12 @@ import numpy as np
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsRegressor
+import lightgbm as lgb
 
 import joblib
 
 # Importamos los datos
-data = pd.read_csv('./src/data/processed/prepared_data.csv', index_col=0)
+data = pd.read_csv('./src/data/processed/set_data.csv', delimiter=',', index_col=0)
 print(data.head(10))
 
 
@@ -61,7 +61,7 @@ print("--- Train and Test executed ---")
 
 
 # Train Model
-model = KNeighborsRegressor()
+model = lgb.LGBMRegressor(n_estimators=120, max_depth=3)
 model.fit(X_train, y_train)
 print("--- Training executed ---")
 
@@ -75,7 +75,7 @@ print("Score del modelo (R^2):", score)
 
 
 # Serialización del modelo
-joblib.dump(model, "./src/model/knn_model.pkl")
+joblib.dump(model, "./src/model/lgbm_model.pkl")
 
 #######################
 #---    Testing   ---#
